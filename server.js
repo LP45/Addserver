@@ -58,7 +58,7 @@ app.set('view engine', 'ejs');
 // Write URL routes here
 app.get('/' , (request, response) => {
     let text = "Welcome to Boston Software Jobs ";
-    response.render('pages/index', {
+    response.render('index', {
         text:text
     });
     
@@ -66,26 +66,34 @@ app.get('/' , (request, response) => {
 
 app.get('/jobs' , (request, response) => {
      
+    let companies_Name = get_company_names_as_list();
+    response.render('jobs', {names:companies_Name}) 
+});        
+        // companies.forEach(i) {
+        //     console.log(i)
+        // }
     
-    response.render('views/jobs.ejs', {names:COMPANIES}) 
-        let companies = get_company_names_as_list();
-        companies.forEach()
-    }
         // for(let i = 0; i < companies.length; i++) {
         //     companies:COMPANIES
         // }
 
     
-});
+
 
 
 app.get('/company/:company_name' , (request, response) => {
-    response.render('views/company', {name: company_name})
-    const params = req.params;
+    const params = request.params;
     const name = params.company_name
+    response.render('company', {name:name})
+
+});
+
+app.get('/company/:company_des' , (req,res) => {
+    console.log(name);
+
+});
 
 
-}
 
 
 // Server is started on the given PORT
